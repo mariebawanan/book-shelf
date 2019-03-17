@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addBook } from '../../actions';
+import { addBook, clearNewBook } from '../../actions';
 
 class AddBook extends Component {
 
@@ -34,6 +34,20 @@ class AddBook extends Component {
             ownerId: this.props.user.login.id
         }))
     }
+
+    showNewBook = (book) => (
+        book.post ?
+            <div className="conf_link">
+                ,sjhsjhdfh <Link to={`/books/${book.bookId}`}>LINK</Link>
+                    Click the link HAHAHA to see the post
+            </div>
+        : null
+    )
+
+    componentWillUnmount(){
+        this.props.dispatch(clearNewBook())
+    }
+
     render() {
         return (
             <div className="rl_container article">
@@ -95,6 +109,11 @@ class AddBook extends Component {
                     </div>
 
                     <button type="submit"> Add Review</button>
+                    {
+                        this.props.books.newbook ?
+                            this.showNewBook(this.props.books.newbook)
+                        : null
+                    }
 
                 </form>
             </div>

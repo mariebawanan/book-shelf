@@ -65,6 +65,13 @@ export function addBook(book) {
     }
 }
 
+export function clearNewBook() {
+    return {
+        type: 'CLEAR_BOOK',
+        payload: {}
+    }
+}
+
 /* ================= USER ================= */
 
 export function loginUser({email, password}) {
