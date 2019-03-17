@@ -74,10 +74,30 @@ export function clearNewBook() {
 
 export function getUserPosts(userId) {
     const request = axios.get(`/api/user_posts?user=${userId}`)
-                    .then( response => response)
+                    .then( response => response.data)
 
     return {
         type: 'GET_USER_POSTS',
+        payload: request
+    }
+}
+
+export function getBook(bookId) {
+    const request = axios.get(`/api/getBook?id=${bookId}`)
+                    .then( response => response.data)
+    
+    return {
+        type: 'GET_BOOK',
+        payload: request
+    }
+}
+
+export function updateBook (data) {
+    const request = axios.post(`/api/book_update`, data)
+                    .then( response => response.data)
+    
+    return {
+        type: 'UPDATE_BOOK',
         payload: request
     }
 }
