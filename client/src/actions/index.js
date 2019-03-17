@@ -72,6 +72,16 @@ export function clearNewBook() {
     }
 }
 
+export function getUserPosts(userId) {
+    const request = axios.get(`/api/user_posts?user=${userId}`)
+                    .then( response => response)
+
+    return {
+        type: 'GET_USER_POSTS',
+        payload: request
+    }
+}
+
 /* ================= USER ================= */
 
 export function loginUser({email, password}) {

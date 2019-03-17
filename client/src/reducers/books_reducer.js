@@ -1,6 +1,6 @@
 export default function(state={}, action){
     switch(action.type){
-        
+
         case 'GET_BOOKS':
             return { ...state, list:action.payload }
 
@@ -24,6 +24,7 @@ export default function(state={}, action){
         case 'CLEAR_BOOK':
             return {...state, newbook: action.payload}
 
+        
         default: 
             return state;
     }
