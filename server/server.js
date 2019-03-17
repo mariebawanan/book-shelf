@@ -111,7 +111,7 @@ app.post('/api/login', (req, res) => {
         user.comparePassword(req.body.password, (err, isMatch) => {
             if(!isMatch) return res.json({
                 isAuth: false,
-                mesasge: 'Wrong password'
+                message: 'Wrong password'
             });
             user.generateToken((err, user)=>{
                 if(err) return res.status(400).send(err);
