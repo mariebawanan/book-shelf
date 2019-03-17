@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { addBook } from '../../actions';
 
 class AddBook extends Component {
 
@@ -26,7 +29,10 @@ class AddBook extends Component {
 
     submitForm = (e) => {
         e.preventDefault();
-        console.log(this.state.formData);
+        this.props.dispatch(addBook({
+            ...this.state.formData,
+            ownerId: this.props.user.login.id
+        }))
     }
     render() {
         return (
@@ -96,4 +102,11 @@ class AddBook extends Component {
     }
 }
 
-export default AddBook;
+function mapStateToProps(state) {
+    console.log(state);
+    return {
+        books: state.books
+    }
+}
+
+export default connect(mapStateToProps)(AddBook);
