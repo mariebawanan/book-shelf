@@ -17,7 +17,7 @@ export default function(state={}, action){
             return {
                 ...state, 
                 register: action.payload.success,
-                user: action.payload.users 
+                users: action.payload.users 
             }
 
         default: 

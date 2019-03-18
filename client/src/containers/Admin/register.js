@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getUsers, registerUser } from '../../actions';
 
-class Register extends Component {
+class Register extends PureComponent {
     
     state = {
         name: '',
@@ -28,6 +28,21 @@ class Register extends Component {
         this.setState({password:event.target.value})
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+        if(nextProps.user.register === false) {
+            this.setState({error:'Error, try again'})
+        } else {
+            this.setState({
+                name: '',
+                lastname: '',
+                email: '',
+                password: '',
+                error: ''
+            })
+        }
+    }
+
 
     submitForm = (e) => {
         e.preventDefault();
@@ -46,18 +61,17 @@ class Register extends Component {
 
     showUsers = (user) => (
         user.users ?
-            user.users.map(user => (
-                <tr key={user._id}>
-                    <td>{user.name}</td>
-                    <td>{user.lastname}</td>
-                    <td>{user.email}</td>
+            user.users.map(item => (
+                <tr key={item._id}>
+                    <td>{item.name}</td>
+                    <td>{item.lastname}</td>
+                    <td>{item.email}</td>
                 </tr>
         ))
         : null
     )
 
     render() {
-        
         let user = this.props.user;
         return (
             <div className="rl_container">
@@ -100,7 +114,7 @@ class Register extends Component {
                     <button type="submit">Add User</button>
 
                     <div className="error">
-                    
+                        {this.state.error}
                     </div>
 
                 </form>
