@@ -38,8 +38,8 @@ class AddBook extends Component {
     showNewBook = (book) => (
         book.post ?
             <div className="conf_link">
-                ,sjhsjhdfh <Link to={`/books/${book.bookId}`}>LINK</Link>
-                    Click the link HAHAHA to see the post
+                Successfully posted! <Link to={`/books/${book.bookId}`}>Click to see post.</Link>
+                    
             </div>
         : null
     )
